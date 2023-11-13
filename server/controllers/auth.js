@@ -6,11 +6,10 @@ export const register = async(req,res)=>{
     try {
         const {
             name,
-            phone,
             email,
             password,
         } = await req.body;
-        console.log(email, password,name,phone);
+        console.log(email, password,name);
         const duplicateUser = await User.findOne({email}).exec();
         if(duplicateUser) {
             console.log(duplicateUser);
@@ -24,7 +23,7 @@ export const register = async(req,res)=>{
             email,
             password: passwordHash,
             phone:"",
-            name:"",
+            name,
             picturePath:"",
         });
         const savedUser = await newUser.save();
