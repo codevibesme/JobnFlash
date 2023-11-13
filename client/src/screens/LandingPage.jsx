@@ -8,7 +8,7 @@ const LandingPage = () =>{
             <div className="h-fit flex flex-col md:flex-row" >
                 <div className="w-full md:w-1/2 h-fit flex flex-col pt-10">
                     <h1 className="text-5xl md:text-8xl font-bold track-wider mb-4">Find Your Dream <span className=" text-red-400 h-fit w-fit">Job</span></h1>
-                    <p className="text-xl md:text-2xl font-semibold text-gray-700">Get yourself exposed to thousands of jobs at our platform, suited to your qualifications. New job postings everyday!</p>
+                    <p className="text-xl md:text-2xl font-semibold text-gray-700">Job Hunting Made Easy: Your Gateway to a World of Career Possibilities</p>
                     <div className=" hidden md:block">
                         <Search />
                     </div>

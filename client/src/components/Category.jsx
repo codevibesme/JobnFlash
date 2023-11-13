@@ -4,7 +4,7 @@ const Category = () => {
     const categories = [
         {
             name: "Web Development",
-            img: "/assets/webdev_cat.png"
+            img: "/assets/webdev_cat2.png"
         },
         {
             name: "Marketing",
