@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import {LandingPage} from "./screens/LandingPage.jsx"
+import LandingPage from "./screens/LandingPage.jsx"
 import Header from './components/Header.jsx';
 
 function App() {
