@@ -1,0 +1,11 @@
+{
+  "Name": "ABC Company",
+  "url": "www.abc.com",
+  "location": "Kolkata",
+  "title": "Web Developer",
+  "experience": "2-5",
+  "type": "internship",
+  "description": "Abcdefghi",
+  "category": ["web", "development", "software", "coding"],
+  "skills": ["react", "react-js", "js", "html", "javascript", "css"]
+}
