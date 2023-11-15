@@ -3,6 +3,8 @@ import React from "react";
 const Footer = () => {
   return (
     <div className="w-full min-h-fit py-6 bg-slate-200">
+      <hr className="border border-slate-500 mt-4 mb-8 w-2/3 mx-auto" />
+
       <h1 className="font-bold font-sans text-3xl md:text-4xl text-center mb-6">
         {" "}
         <span className="text-red-400">j</span>obsy

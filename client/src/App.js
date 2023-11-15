@@ -5,6 +5,7 @@ import LoginPage from "./screens/LoginPage.jsx";
 import RegisterPage from "./screens/RegisterPage.jsx";
 import Footer from "./components/Footer.jsx";
 import JobsPage from "./screens/JobsPage.jsx";
+import JobPage from "./screens/JobPage.jsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/login" element={<LoginPage />} />
           <Route exact path="/signup" element={<RegisterPage />} />
           <Route exact path="/jobs" element={<JobsPage />} />
+          <Route exact path="/job/:id" element={<JobPage />} />
         </Routes>
         <Footer />
       </Router>

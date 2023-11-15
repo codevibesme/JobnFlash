@@ -52,7 +52,10 @@ const Header = () => {
         <h1 className="text-2xl mb-2 md:me-6 md:mb-0 font-bold hover:text-red-400 hover:scale-105 cursor-pointer md:flex md:items-end">
           Categories
         </h1>
-        <h1 className="text-2xl mb-2 md:me-6 md:mb-0 font-bold hover:text-red-400 hover:scale-105 cursor-pointer md:flex md:items-end" onClick={() => navigate("/jobs")}>
+        <h1
+          className="text-2xl mb-2 md:me-6 md:mb-0 font-bold hover:text-red-400 hover:scale-105 cursor-pointer md:flex md:items-end"
+          onClick={() => navigate("/jobs")}
+        >
           All Jobs
         </h1>
         <h1 className="text-2xl mb-2 md:me-6 md:mb-0 font-bold hover:text-red-400 hover:scale-105 cursor-pointer md:flex md:items-end">

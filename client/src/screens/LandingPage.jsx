@@ -57,7 +57,6 @@ const LandingPage = () => {
         Browse Popular <span className="text-red-400">Categories</span>
       </h1>
       <Category />
-      <hr className="border border-slate-500 mt-8 w-2/3 mx-auto" />
     </div>
   );
 };

@@ -2,10 +2,10 @@ import React from "react";
 
 const TopQueryBox = () => {
   return (
-    <form id="search" className="flex w-full min-h-fit rounded-lg bg-white">
+    <form id="search" className="flex w-full min-h-fit rounded-xl bg-white">
       <input
         id="title"
-        className="w-2/3 text-lg md:border-r-2 md:border-gray-200 p-3 md:p-6 focus:outline-none  md:text-2xl md:w-1/5 rounded-lg rounded-e-none"
+        className="w-2/3 text-lg md:border-r-2 md:border-gray-200 p-3 md:p-6 focus:outline-none  md:text-2xl md:w-1/5 rounded-xl rounded-e-none"
         placeholder="Title"
       />
       <input
@@ -25,7 +25,7 @@ const TopQueryBox = () => {
       />
       <button
         type="submit"
-        className="rounded-lg w-1/3 text-lg md:text-3xl text-white bg-red-400 hover:scale-105 hover:shadow-md hover:shadow-red-500 md:w-1/5 text-center"
+        className="rounded-xl rounded-s-none w-1/3 text-lg md:text-3xl text-white bg-red-400 hover:scale-105 hover:shadow-md hover:shadow-red-500 md:w-1/5 text-center"
       >
         Find Job
       </button>
