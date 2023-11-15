@@ -1,21 +1,24 @@
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import LandingPage from "./screens/LandingPage.jsx"
-import Header from './components/Header.jsx';
-import LoginPage from './screens/LoginPage.jsx';
-import RegisterPage from './screens/RegisterPage.jsx';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./screens/LandingPage.jsx";
+import Header from "./components/Header.jsx";
+import LoginPage from "./screens/LoginPage.jsx";
+import RegisterPage from "./screens/RegisterPage.jsx";
+import Footer from "./components/Footer.jsx";
+import JobsPage from "./screens/JobsPage.jsx";
 
 function App() {
   return (
     <div className="App">
-      <Header />
       <Router>
+        <Header />
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/login" element={<LoginPage />} />
-          <Route exact path="/signup" element={<RegisterPage/>} />
+          <Route exact path="/signup" element={<RegisterPage />} />
+          <Route exact path="/jobs" element={<JobsPage />} />
         </Routes>
+        <Footer />
       </Router>
-      
     </div>
   );
 }

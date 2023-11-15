@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Search from "../components/Search";
 import Category from "../components/Category";
-import Footer from "../components/Footer";
+import useScreenSize from "../hooks/useScreenSize";
 const LandingPage = () => {
+  const screenSize = useScreenSize();
+  useEffect(() => {
+    console.log(screenSize);
+  }, [screenSize]);
   return (
     <div className="bg-slate-200 min-w-full px-8 pb-4">
       <div className="h-fit flex flex-col md:flex-row pt-5 md:pt-10 ">
@@ -54,7 +58,6 @@ const LandingPage = () => {
       </h1>
       <Category />
       <hr className="border border-slate-500 mt-8 w-2/3 mx-auto" />
-      <Footer />
     </div>
   );
 };

@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { IoMenuOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { AvatarGenerator } from "random-avatar-generator";
 import { setIsLoggedIn, setToken, setUser } from "../slices/authSlice";
+import { useNavigate } from "react-router-dom";
 const Header = () => {
   const IsLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const user = useSelector((state) => state.auth.user);
   const [showMenu, setShowMenu] = useState("hidden");
   const [showProfileMenu, setShowProfileMenu] = useState("hidden");
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const genAvatarWithSeed = () => {
     const generator = new AvatarGenerator();
     const logo = generator.generateRandomAvatar(user._id);
@@ -22,9 +23,7 @@ const Header = () => {
     dispatch(setToken({ token: "" }));
     dispatch(setUser({ user: null }));
   };
-  useEffect(() => {
-    console.log(IsLoggedIn);
-  }, [IsLoggedIn]);
+
   return (
     <div className="flex md:flex-row flex-col justify-between w-full p-8 pb-0 bg-slate-200 cursor-pointer">
       <div className="md:w-fit mb-6 md:mb-0 md:mx-0 flex justify-between w-2/3">
@@ -35,26 +34,35 @@ const Header = () => {
         >
           <IoMenuOutline className="text-4xl md:hidden" />{" "}
         </button>
-        <h1 className="font-bold font-sans text-3xl md:text-4xl">
+        <h1
+          className="font-bold font-sans text-3xl md:text-4xl"
+          onClick={() => navigate("/")}
+        >
           {" "}
           <span className="text-red-400">j</span>obsy
         </h1>
       </div>
       <div className={`${showMenu} md:flex md:flex-row flex-col `}>
-        <h1 className="text-2xl mb-2 md:me-6 md:mb-0 font-bold hover:text-red-400 hover:scale-105 cursor-pointer md:flex md:items-end">
+        <h1
+          className="text-2xl mb-2 md:me-6 md:mb-0 font-bold hover:text-red-400 hover:scale-105 cursor-pointer md:flex md:items-end"
+          onClick={() => navigate("/")}
+        >
           Home
         </h1>
         <h1 className="text-2xl mb-2 md:me-6 md:mb-0 font-bold hover:text-red-400 hover:scale-105 cursor-pointer md:flex md:items-end">
           Categories
         </h1>
-        <h1 className="text-2xl mb-2 md:me-6 md:mb-0 font-bold hover:text-red-400 hover:scale-105 cursor-pointer md:flex md:items-end">
+        <h1 className="text-2xl mb-2 md:me-6 md:mb-0 font-bold hover:text-red-400 hover:scale-105 cursor-pointer md:flex md:items-end" onClick={() => navigate("/jobs")}>
           All Jobs
         </h1>
         <h1 className="text-2xl mb-2 md:me-6 md:mb-0 font-bold hover:text-red-400 hover:scale-105 cursor-pointer md:flex md:items-end">
           Contact
         </h1>
         {!IsLoggedIn ? (
-          <button className="w-fit text-lg me-2 md:me-6 font-bold text-white bg-red-400 hover:scale-105 cursor-pointer hover:shadow-md hover:shadow-red-500 p-1 px-2  rounded-lg md:flex md:items-end">
+          <button
+            className="w-fit text-lg me-2 md:me-6 font-bold text-white bg-red-400 hover:scale-105 cursor-pointer hover:shadow-md hover:shadow-red-500 p-1 px-2  rounded-lg md:flex md:items-end"
+            onClick={() => navigate("/login")}
+          >
             Login / Sign up
           </button>
         ) : (
