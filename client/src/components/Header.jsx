@@ -25,7 +25,7 @@ const Header = () => {
   };
 
   return (
-    <div className="flex md:flex-row flex-col justify-between w-full p-8 pb-0 bg-slate-200 cursor-pointer">
+    <div className="flex md:flex-row flex-col justify-between w-full p-8 bg-slate-200 cursor-pointer">
       <div className="md:w-fit mb-6 md:mb-0 md:mx-0 flex justify-between w-2/3">
         <button
           onClick={() =>
@@ -69,8 +69,8 @@ const Header = () => {
             Login / Sign up
           </button>
         ) : (
-          <div className="flex flex-col bg-red-400 rounded-lg hover:scale-105">
-            <div className="flex w-fit p-2 items-center hover:border-2 hover:border-black rounded-lg">
+          <div className="relative w-fit flex flex-col bg-red-400 rounded-lg md:rounded-br-none hover:scale-105">
+            <div className="flex w-fit p-2 items-center hover:border-2 hover:border-black md:rounded-br-none rounded-lg">
               <div className="rounded-full h-12 w-12 me-2 overflow-hidden">
                 <img
                   src={genAvatarWithSeed()}
@@ -93,7 +93,7 @@ const Header = () => {
               </button>
             </div>
             <div
-              className={`${showProfileMenu} flex-col text-xl font-bold text-white p-2`}
+              className={`${showProfileMenu} md:absolute md:top-16 md:right-0 rounded-b-lg bg-red-400 flex-col text-xl font-bold text-white p-2`}
             >
               <h1 className="hover:text-black">Profile</h1>
               <hr className="mb-1" />
