@@ -14,7 +14,10 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+    googleId: String,
+    githubId: String,
+    linkedinId: String,
 }, 
 {timestamps: true},
 );
