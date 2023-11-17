@@ -9,14 +9,17 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
-  const handleSocialLogin = async (e) => {
-    await fetch("http://localhost:8000/auth/google", {
-      method: "GET",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
+  const handleSocialLogin = async () => {
+    // await fetch("http://localhost:8000/auth/google", {
+    //   method: "GET",
+    //   headers: {
+    //     "Access-Control-Allow-Origin": "*",
+    //   },
+    // });
+    window.location.href = "http://localhost:8000/auth/google/";
+   
   };
+  
 
   const handleLogin = async (e) => {
     let credentials = {

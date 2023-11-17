@@ -23,6 +23,17 @@ var whitelist = [
   "https://accounts.google.com/o/oauth2/v2/auth",
   "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fgoogle%2Fcallback&scope=profile&client_id=386050768892-7mi0jv2752an8090fjbmgueup82oalf7.apps.googleusercontent.com",
 ];
+const corsOptions = {
+  credentials: true, // Allow cookies to be sent with the request
+  origin: (origin, callback) => {
+    // Check if the origin is in the whitelist, or if it's undefined (e.g., from same origin)
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
 const app = express();
 app.use(express.json());
 app.use(helmet());
@@ -30,7 +41,7 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors({ credentials: true, origin: whitelist }));
+app.use(cors(corsOptions));
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 const storage = multer.diskStorage({
@@ -65,7 +76,7 @@ app.use("/auth", authRoutes);
 app.get(
   "/auth/google",
   passport.authenticate("google", {
-    scope: ["profile"],
+    scope: ['https://www.googleapis.com/auth/plus.login'] 
   })
 );
 
@@ -75,7 +86,7 @@ app.get(
     failureRedirect: "/",
   }),
   (req, res) => {
-    res.redirect("/");
+    res.redirect("http://localhost:3000/");
   }
 );
 
