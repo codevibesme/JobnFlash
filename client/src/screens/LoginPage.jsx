@@ -9,6 +9,15 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
+  const handleSocialLogin = async (e) => {
+    await fetch("http://localhost:8000/auth/google", {
+      method: "GET",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+  };
+
   const handleLogin = async (e) => {
     let credentials = {
       email,
@@ -87,7 +96,9 @@ export default function LoginPage() {
         <div className="flex mt-4 gap-x-2">
           <button
             type="button"
+            id="google-login"
             className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-red-400"
+            onClick={handleSocialLogin}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
