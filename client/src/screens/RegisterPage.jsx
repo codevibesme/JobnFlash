@@ -6,12 +6,9 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const googleAuth = (e) => {
+  const googleAuth = async (e) => {
     e.preventDefault();
-    window.open(
-      `${process.env.REACT_APP_API_URL}/auth/google/callback`,
-      "_self"
-    );
+    window.open(`http://localhost:8000/auth/google/callback`, "_self");
   };
 
   const handleRegister = async (e) => {
