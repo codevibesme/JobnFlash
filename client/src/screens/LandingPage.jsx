@@ -9,7 +9,7 @@ const LandingPage = () => {
   }, [screenSize]);
   return (
     <div className="bg-slate-200 min-w-full px-8 pb-4">
-      <div className="h-fit flex flex-col md:flex-row pt-5 md:pt-10 ">
+      <div className="h-fit flex flex-col md:flex-row  md:pt-5">
         <div className="w-full md:w-1/2 h-fit flex flex-col pt-10">
           <h1 className="text-5xl md:text-8xl font-bold track-wider mb-4">
             Find Your Dream{" "}
