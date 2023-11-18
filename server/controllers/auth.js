@@ -48,3 +48,37 @@ export const login = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
+
+export const socialLogin= async (req, res, platform) => {
+  try {
+    const user = req.user._json;
+    console.log(user);
+    const pass = user.sub + Date.now();
+    const salt = await bcrypt.genSalt();
+    const hashPass = await bcrypt.hash(pass, salt);
+    let newUser = await User.findOne({ email: user.email }).exec();
+    console.log(newUser);
+    if (newUser) {
+      newUser = await User.findOneAndUpdate(
+        { email: user.email },
+        { password: hashPass }
+      );
+      res.redirect(
+        `http://localhost:3000/loginsuccess/${newUser._id}/${pass}`
+      );
+    } else {
+      newUser = new User({
+        ssid: user.sub,
+        name: user.name,
+        email: user.email,
+        password: hashPass,
+      });
+      const savedUser = await newUser.save();
+      res.redirect(
+        `http://localhost:3000/loginsuccess/${savedUser._id}/${pass}`
+      );
+    }
+  } catch (err) {
+    res.status(400).json({ msg: err.message });
+  }
+}

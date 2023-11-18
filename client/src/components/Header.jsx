@@ -22,6 +22,7 @@ const Header = () => {
     dispatch(setIsLoggedIn({ flag: false }));
     dispatch(setToken({ token: "" }));
     dispatch(setUser({ user: null }));
+    window.open(`${process.env.REACT_APP_API_URL}/auth/logout`, "_self");
   };
 
   return (

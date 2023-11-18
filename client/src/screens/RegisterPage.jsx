@@ -6,6 +6,13 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const googleAuth = (e) => {
+    e.preventDefault();
+    window.open(
+      `${process.env.REACT_APP_API_URL}/auth/google/callback`,
+      "_self"
+    );
+  };
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -133,8 +140,10 @@ export default function RegisterPage() {
         </div>
         <div className="flex mt-4 gap-x-2">
           <button
+            id="google"
             type="button"
             className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-red-400"
+            onClick={googleAuth}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
