@@ -3,7 +3,6 @@ import { githubLogin, login, socialLogin } from "../controllers/auth.js";
 import passport from "../passport.js";
 import User from "../models/User.js";
 
-
 const router = express.Router();
 
 router.post("/login", login);
@@ -25,6 +24,7 @@ router.get("/login/failed", (req, res) => {
   });
 });
 
+router.get("/google", passport.authenticate("google", ["profile", "email"]));
 router.get(
   "/google/callback",
   passport.authenticate("google", {
@@ -33,18 +33,16 @@ router.get(
   socialLogin
 );
 
-router.get("/google", passport.authenticate("google", ["profile", "email"]));
-
-
 //routes for github
-router.get('/github/callback',
-  passport.authenticate('github',
-   { failureRedirect: "/auth/login/failed" 
-  }),
-githubLogin
-  );
-
-router.get('/github',passport.authenticate('github', { scope: ['user:email'] }));
+router.get(
+  "/github",
+  passport.authenticate("github", { scope: ["user:email"] })
+);
+router.get(
+  "/github/callback",
+  passport.authenticate("github", { failureRedirect: "/auth/login/failed" }),
+  githubLogin
+);
 
 router.get("/logout", (req, res) => {
   req.logOut(function (err) {

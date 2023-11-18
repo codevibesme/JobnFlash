@@ -83,39 +83,38 @@ export const socialLogin = async (req, res) => {
 
 export const githubLogin = async (req, res) => {
   try {
-    const user = req.user._json;
+    let user = req.user._json;
+    if (user?.email === null) {
+      user.email = `${user.login}${user.id}@github.com`;
+    }
     console.log(user);
-
     let newUser = await User.findOne({ email: user.email }).exec();
     console.log(newUser);
-
+    const pass = `${user.login}`;
+    const salt = await bcrypt.genSalt();
+    const hashPass = await bcrypt.hash(pass, salt);
     if (newUser) {
       // Update user details (excluding password)
       newUser = await User.findOneAndUpdate(
         { email: user.email },
-        // {
-        //   $set: {
-        //     ssid: user.id,
-        //     name: user.name,
-        //     // Update other fields as needed
-        //   },
-        // },
-        // { new: true } // Return the updated user document
+        { password: hashPass }
       );
-      res.redirect(`http://localhost:3000/loginsuccess/${newUser._id}`);
+      res.redirect(`http://localhost:3000/loginsuccess/${newUser._id}/${pass}`);
     } else {
       // Create a new user
       newUser = new User({
         ssid: user.id,
         name: user.name,
         email: user.email,
-        // Set other fields as needed
+        password: hashPass,
       });
       const savedUser = await newUser.save();
-      res.redirect(`http://localhost:3000/loginsuccess/${savedUser._id}`);
+      console.log(savedUser);
+      res.redirect(
+        `http://localhost:3000/loginsuccess/${savedUser._id}/${pass}`
+      );
     }
   } catch (err) {
     res.status(400).json({ msg: err.message });
   }
 };
-
