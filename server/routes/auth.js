@@ -1,8 +1,8 @@
 import express from "express";
-import { login, socialLogin } from "../controllers/auth.js";
+import { githubLogin, login, socialLogin } from "../controllers/auth.js";
 import passport from "../passport.js";
 import User from "../models/User.js";
-import bcrypt from "bcrypt";
+
 
 const router = express.Router();
 
@@ -34,6 +34,18 @@ router.get(
 );
 
 router.get("/google", passport.authenticate("google", ["profile", "email"]));
+
+
+//routes for github
+router.get('/github/callback',
+  passport.authenticate('github',
+   { failureRedirect: "/auth/login/failed" 
+  }),
+githubLogin
+  );
+
+router.get('/github',passport.authenticate('github', { scope: ['user:email'] }));
+
 router.get("/logout", (req, res) => {
   req.logOut(function (err) {
     if (err) {

@@ -80,3 +80,42 @@ export const socialLogin = async (req, res) => {
     res.status(400).json({ msg: err.message });
   }
 };
+
+export const githubLogin = async (req, res) => {
+  try {
+    const user = req.user._json;
+    console.log(user);
+
+    let newUser = await User.findOne({ email: user.email }).exec();
+    console.log(newUser);
+
+    if (newUser) {
+      // Update user details (excluding password)
+      newUser = await User.findOneAndUpdate(
+        { email: user.email },
+        // {
+        //   $set: {
+        //     ssid: user.id,
+        //     name: user.name,
+        //     // Update other fields as needed
+        //   },
+        // },
+        // { new: true } // Return the updated user document
+      );
+      res.redirect(`http://localhost:3000/loginsuccess/${newUser._id}`);
+    } else {
+      // Create a new user
+      newUser = new User({
+        ssid: user.id,
+        name: user.name,
+        email: user.email,
+        // Set other fields as needed
+      });
+      const savedUser = await newUser.save();
+      res.redirect(`http://localhost:3000/loginsuccess/${savedUser._id}`);
+    }
+  } catch (err) {
+    res.status(400).json({ msg: err.message });
+  }
+};
+
