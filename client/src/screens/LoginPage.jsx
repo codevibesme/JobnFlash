@@ -9,25 +9,18 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
-  const handleSocialLogin = async () => {
-    // await fetch("http://localhost:8000/auth/google", {
-    //   method: "GET",
-    //   headers: {
-    //     "Access-Control-Allow-Origin": "*",
-    //   },
-    // });
-    window.location.href = "http://localhost:8000/auth/google/";
-   
+  const googleAuth = async (e) => {
+    e.preventDefault();
+    window.open(`http://localhost:8000/auth/google/callback`, "_self");
   };
-  
 
   const handleLogin = async (e) => {
+    e.preventDefault();
     let credentials = {
       email,
       password,
     };
     credentials = JSON.stringify(credentials);
-    e.preventDefault();
     try {
       const response = await fetch("http://localhost:8000/auth/login", {
         method: "POST",
@@ -101,7 +94,7 @@ export default function LoginPage() {
             type="button"
             id="google-login"
             className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-red-400"
-            onClick={handleSocialLogin}
+            onClick={googleAuth}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
