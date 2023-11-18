@@ -17,9 +17,7 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    googleId: String,
-    githubId: String,
-    linkedinId: String,
+   
   },
   { timestamps: true }
 );
