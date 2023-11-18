@@ -1,5 +1,5 @@
 import express from "express";
-import { login, socialLogin } from "../controllers/auth.js";
+import { login } from "../controllers/auth.js";
 import passport from "../passport.js";
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
@@ -25,14 +25,44 @@ router.get("/login/failed", (req, res) => {
   });
 });
 
-
-//Google login
 router.get(
   "/google/callback",
   passport.authenticate("google", {
     failureRedirect: "/auth/login/failed",
   }),
- socialLogin
+  async (req, res) => {
+    try {
+      const user = req.user._json;
+      console.log(user);
+      const pass = user.sub + Date.now();
+      const salt = await bcrypt.genSalt();
+      const hashPass = await bcrypt.hash(pass, salt);
+      let newUser = await User.findOne({ email: user.email }).exec();
+      console.log(newUser);
+      if (newUser) {
+        newUser = await User.findOneAndUpdate(
+          { email: user.email },
+          { password: hashPass }
+        );
+        res.redirect(
+          `http://localhost:3000/loginsuccess/${newUser._id}/${pass}`
+        );
+      } else {
+        newUser = new User({
+          ssid: user.sub,
+          name: user.name,
+          email: user.email,
+          password: hashPass,
+        });
+        const savedUser = await newUser.save();
+        res.redirect(
+          `http://localhost:3000/loginsuccess/${savedUser._id}/${pass}`
+        );
+      }
+    } catch (err) {
+      res.status(400).json({ msg: err.message });
+    }
+  }
 );
 
 router.get("/google", passport.authenticate("google", ["profile", "email"]));
@@ -45,7 +75,4 @@ router.get("/logout", (req, res) => {
     }
   });
 });
-
-
-
 export default router;

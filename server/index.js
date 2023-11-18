@@ -10,6 +10,10 @@ import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
 import { register } from "./controllers/auth.js";
+<<<<<<< HEAD
+=======
+import cookieSession from "cookie-session";
+>>>>>>> d5b8529ca5163da7ebf451dd3993c3d9ee997645
 import passport from "./passport.js";
 import session from "express-session";
 const __filename = fileURLToPath(import.meta.url);
@@ -68,48 +72,6 @@ app.post("/auth/register", upload.single("picture"), register);
 
 //Routes
 app.use("/auth", authRoutes);
-
-// Google authentication route
-app.get(
-  "/auth/google",
-  passport.authenticate("google", {
-    scope: ['https://www.googleapis.com/auth/plus.login'] 
-  })
-);
-
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    failureRedirect: "/",
-  }),
-  (req, res) => {
-    res.redirect("http://localhost:3000/");
-  }
-);
-
-//  GitHub authentication route
-// app.get('/auth/github',
-//   passport.authenticate('github')
-// );
-
-// app.get('/auth/github/callback',
-//   passport.authenticate('github', { failureRedirect: '/' }),
-//   (req, res) => {
-//     res.redirect('/');
-//   }
-// );
-
-//  LinkedIn authentication route
-// app.get('/auth/linkedin',
-//   passport.authenticate('linkedin', { state: 'SOME_STATE' })
-// );
-
-// app.get('/auth/linkedin/callback',
-//   passport.authenticate('linkedin', { failureRedirect: '/' }),
-//   (req, res) => {
-//     res.redirect('/');
-//   }
-// );
 
 const PORT = process.env.PORT || 6001;
 

@@ -7,7 +7,6 @@ const userSchema = mongoose.Schema(
       type: String,
     },
     ssid: String,
-
     bio: String,
     phone: String,
     email: {
@@ -18,6 +17,7 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+  
   },
   { timestamps: true }
 );
