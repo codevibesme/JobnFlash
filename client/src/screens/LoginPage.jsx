@@ -16,7 +16,7 @@ export default function LoginPage() {
     //     "Access-Control-Allow-Origin": "*",
     //   },
     // });
-    window.location.href = "http://localhost:8000/auth/google/";
+    window.location.href = "http://localhost:8000/auth/google";
    
   };
   

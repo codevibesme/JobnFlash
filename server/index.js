@@ -76,7 +76,7 @@ app.use("/auth", authRoutes);
 app.get(
   "/auth/google",
   passport.authenticate("google", {
-    scope: ['https://www.googleapis.com/auth/plus.login'] 
+    scope: ['profile','email'] 
   })
 );
 
@@ -86,9 +86,10 @@ app.get(
     failureRedirect: "/",
   }),
   (req, res) => {
-    res.redirect("http://localhost:3000/");
+    res.redirect("/");
   }
 );
+
 
 //  GitHub authentication route
 // app.get('/auth/github',
