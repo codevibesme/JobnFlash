@@ -49,7 +49,7 @@ export const login = async (req, res) => {
   }
 };
 
-export const socialLogin= async (req, res, platform) => {
+export const socialLogin =  async (req, res) => {
   try {
     const user = req.user._json;
     console.log(user);
@@ -81,4 +81,8 @@ export const socialLogin= async (req, res, platform) => {
   } catch (err) {
     res.status(400).json({ msg: err.message });
   }
+
 }
+
+}
+
