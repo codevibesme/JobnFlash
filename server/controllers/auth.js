@@ -48,6 +48,7 @@ export const login = async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 };
+
 export const socialLogin =  async (req, res) => {
   try {
     const user = req.user._json;
@@ -80,4 +81,8 @@ export const socialLogin =  async (req, res) => {
   } catch (err) {
     res.status(400).json({ msg: err.message });
   }
+
 }
+
+}
+
