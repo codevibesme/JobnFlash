@@ -30,7 +30,7 @@ router.get(
   passport.authenticate("google", {
     failureRedirect: "/auth/login/failed",
   }),
- socialLogin
+  socialLogin
 );
 
 router.get("/google", passport.authenticate("google", ["profile", "email"]));

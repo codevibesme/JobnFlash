@@ -49,7 +49,7 @@ export const login = async (req, res) => {
   }
 };
 
-export const socialLogin =  async (req, res) => {
+export const socialLogin = async (req, res) => {
   try {
     const user = req.user._json;
     console.log(user);
@@ -63,9 +63,7 @@ export const socialLogin =  async (req, res) => {
         { email: user.email },
         { password: hashPass }
       );
-      res.redirect(
-        `http://localhost:3000/loginsuccess/${newUser._id}/${pass}`
-      );
+      res.redirect(`http://localhost:3000/loginsuccess/${newUser._id}/${pass}`);
     } else {
       newUser = new User({
         ssid: user.sub,
@@ -81,8 +79,4 @@ export const socialLogin =  async (req, res) => {
   } catch (err) {
     res.status(400).json({ msg: err.message });
   }
-
-}
-
-}
-
+};

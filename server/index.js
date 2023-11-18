@@ -10,10 +10,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
 import { register } from "./controllers/auth.js";
-<<<<<<< HEAD
-=======
-import cookieSession from "cookie-session";
->>>>>>> d5b8529ca5163da7ebf451dd3993c3d9ee997645
 import passport from "./passport.js";
 import session from "express-session";
 const __filename = fileURLToPath(import.meta.url);
